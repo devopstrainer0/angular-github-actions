@@ -11,6 +11,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: dir-create
+      run: |
+        mkdir -p ~/.terraform.d/plugins/checkov
     - name: cache-dependencies
       uses: actions/cache@v2
       with:
