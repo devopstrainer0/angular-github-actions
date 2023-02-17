@@ -14,17 +14,17 @@ jobs:
     - name: dir-create
       run: |
         mkdir -p ~/.terraform.d/plugins/checkov
-    - name: cache-dependencies
-      uses: actions/cache@v2
+    - uses: actions/cache/restore@v3
+      id: cache      
       with:
-       path: ~/.terraform.d/plugins/checkov # path to Checkov installation directory
-       key: ${{ runner.os }}-checkov
+       path: ~/.terraform.d/plugins/checkov1 # path to Checkov installation directory
        restore-keys: ${{ runner.os }}-checkov
+       
     - name: Install Checkov
-      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
           pip install checkov
     - uses: actions/cache/save@v3
       with:
-       path: ~/.terraform.d/plugins/checkov # path to Checkov installation directory
+       path: ~/.terraform.d/plugins/checkov1 # path to Checkov installation directory
        key: ${{ runner.os }}-checkov
