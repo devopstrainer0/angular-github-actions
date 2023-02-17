@@ -17,7 +17,7 @@ jobs:
     - uses: actions/cache/restore@v3
       id: cache      
       with:
-       path: ~/.terraform.d/plugins/checkov1 # path to Checkov installation directory
+       path: ~/.cache/pip # path to Checkov installation directory
        key: ${{ runner.os }}-checkov1
        
     - name: Install Checkov
@@ -26,5 +26,5 @@ jobs:
           pip install checkov
     - uses: actions/cache/save@v3
       with:
-       path: ~/.terraform.d/plugins/checkov1 # path to Checkov installation directory
+       path: ~/.cache/pip # path to Checkov installation directory
        key: ${{ runner.os }}-checkov1
