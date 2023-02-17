@@ -11,12 +11,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Cache Checkov installation
+    - name: cache-dependencies
       uses: actions/cache@v2
       with:
        path: ~/.terraform.d/plugins/checkov # path to Checkov installation directory
        key: ${{ runner.os }}-checkov
        restore-keys: ${{ runner.os }}-checkov-
     - name: Install Checkov
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
       run: |
           pip install checkov
