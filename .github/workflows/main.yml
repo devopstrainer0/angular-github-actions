@@ -23,7 +23,7 @@ jobs:
           echo "Current branch is $branch"
           latest_commit=$(git ls-remote origin main | awk '{print $1}')
           current_commit=$(git rev-parse HEAD)
-          if [ "$latest_commit" != "$current_commit" ]; then
+          if [ "$latest_commit" != "$current_commit" ] && [ "$branch" == "main" ]; then
             echo "This workflow is running on an old commit."
             echo "Hello"
             exit 1
