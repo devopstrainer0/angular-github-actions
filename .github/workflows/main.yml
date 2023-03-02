@@ -16,6 +16,7 @@ jobs:
       run: |
         mkdir -p ~/.terraform.d/plugins/checkov
     - name: Check commit
+      if: github.ref == 'refs/heads/main'
       run: |
           latest_commit=$(git ls-remote origin main | awk '{print $1}')
           current_commit=$(git rev-parse HEAD)
