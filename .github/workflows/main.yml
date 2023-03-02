@@ -15,6 +15,14 @@ jobs:
     - name: dir-create
       run: |
         mkdir -p ~/.terraform.d/plugins/checkov
+    - name: Check commit
+      run: |
+          latest_commit=$(git ls-remote origin main | awk '{print $1}')
+          current_commit=$(git rev-parse HEAD)
+          if [ "$latest_commit" != "$current_commit" ]; then
+            echo "This workflow is running on an old commit."
+            exit 1
+          fi
     - uses: actions/cache/restore@v3
       id: cache      
       with:
