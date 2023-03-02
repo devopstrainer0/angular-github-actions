@@ -18,10 +18,8 @@ jobs:
     - name: Check commit
       #if: github.ref == 'refs/heads/main'
       run: |
-          if [ {{ github.ref }} == "main" ]; then
-            echo "my branch is main"
-          fi
-          
+          branch=$(git rev-parse --abbrev-ref HEAD)
+          echo "Current branch is $branch"
           latest_commit=$(git ls-remote origin main | awk '{print $1}')
           current_commit=$(git rev-parse HEAD)
           if [ "$latest_commit" != "$current_commit" ]; then
