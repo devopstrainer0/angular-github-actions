@@ -28,7 +28,7 @@ jobs:
             echo "Hello"
             exit 1
           fi
-          echo "it is not old commit"
+          echo "it is not main branch"
     - uses: actions/cache/restore@v3
       id: cache      
       with:
