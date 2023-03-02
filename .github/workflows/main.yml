@@ -22,7 +22,6 @@ jobs:
             current_commit=$(git rev-parse HEAD)
             if [ "$latest_commit" != "$current_commit" ]; then
              echo "This workflow is running on an old commit."
-              echo "hi"
               exit 1
               fi
           fi    
