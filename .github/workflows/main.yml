@@ -9,9 +9,16 @@ on:
 
 jobs:
   deploy:
-    if: failure()
     runs-on: ubuntu-latest
     steps:
+    - name: Check Concurrent Runs
+      id: concurrentruns
+      uses: azure/actions/concurrent-runs@v2.3.0
+      with:
+          check_concurrency: true
+          max_concurrent_runs: 1
+          context: ${{ github.workflow }}
+          sha: ${{ github.sha }}    
     - name: Checkout
       uses: actions/checkout@v2
     - name: dir-create
