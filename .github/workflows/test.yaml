@@ -7,11 +7,5 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Call Another Workflow
-        uses: .github/workflows/main.yaml
+    uses: /.github/workflows/main.yaml@v1
 
