@@ -9,6 +9,7 @@ on:
 
 jobs:
   deploy:
+    if: failure()
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
